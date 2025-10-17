@@ -36,6 +36,9 @@ public class BankSystem {
                     }
                     break;
 
+                case 2:
+                    double moneydeposit = moneyDeposit(accountNumber, accountOpeningBalance, accountType);
+                    break;
 
                 default:
                     System.out.println("Invalid choice! Please enter a number from 1–8.");
@@ -91,5 +94,23 @@ public class BankSystem {
             break;
         }
         System.out.println("Account created successfully for " + userName[accounCount]);
+    }
+
+    public static double moneyDeposit(int[] accountNumber, double[] accountOpeningBalance, String[] accountType) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter the account number: ");
+        int accountNumber1 = scan.nextInt();
+
+        for (int i = 0; i < accountNumber.length; i++) {
+            if (accountNumber[i] == accountNumber1) {
+                System.out.print("Enter the deposit amount: Rs. ");
+                double depositAmount = scan.nextDouble();
+                accountOpeningBalance[i] += depositAmount;
+                System.out.println("Deposit successful! your " + accountType[i] + " Account New balance: Rs. " + accountOpeningBalance[i]);
+                return accountOpeningBalance[i];
+            }
+        }
+        System.out.println("Invalid account number!");
+        return 0;
     }
 }
