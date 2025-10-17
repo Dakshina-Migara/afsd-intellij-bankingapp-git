@@ -13,6 +13,8 @@ public class BankSystem {
         String[] loanDescription = new String[50];
         int accountCount = 0;
 
+        clearConsole();
+
         while (true) {
             System.out.println("===== WELCOME =====");
             System.out.println("1. Create Account");
@@ -59,7 +61,7 @@ public class BankSystem {
                 case 7:
                     double checkBalance = checkBalance(accountNumber, accountOpeningBalance, accountType);
                     break;
-                    
+
                 case 8:
                     System.out.println("Thank you for banking with us!");
                     System.exit(0);
@@ -255,5 +257,19 @@ public class BankSystem {
         }
         System.out.println("Invalid account number!");
         return 0;
+    }
+
+    public static void clearConsole() {
+        try {
+            final String os = System.getProperty("os.name");
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
     }
 }
