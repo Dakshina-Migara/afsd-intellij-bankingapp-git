@@ -48,6 +48,10 @@ public class BankSystem {
                     double applyLoan = applyLoan(accountNumber, loanAmount, accountOpeningBalance, loanDescription);
                     break;
 
+                case 5:
+                    double loanDetails = loanDetails(accountNumber, loanAmount, userName, loanDescription);
+                    break;
+
 
                 default:
                     System.out.println("Invalid choice! Please enter a number from 1–8.");
@@ -162,6 +166,24 @@ public class BankSystem {
 
                 accountOpeningBalance[i] += loanAmount[i];
                 System.out.println("Loan approved! New balance: Rs. " + accountOpeningBalance[i]);
+                return loanAmount[i];
+            }
+        }
+        System.out.println("Account not found!");
+        return 0;
+    }
+
+    public static double loanDetails(int[] accountNumber, double[] loanAmount, String[] userName, String[] loanDescription) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter your account number: ");
+        int accountNumber4 = scan.nextInt();
+
+        for (int i = 0; i < accountNumber.length; i++) {
+            if (accountNumber[i] == accountNumber4) {
+                System.out.println("Name: " + userName[i]);
+                System.out.println("Account Number: " + accountNumber[i]);
+                System.out.println("Loan Purpose: " + loanDescription[i]);
+                System.out.println("Loan Amount: Rs. " + loanAmount[i]);
                 return loanAmount[i];
             }
         }
