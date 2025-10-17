@@ -44,6 +44,10 @@ public class BankSystem {
                     double moneyWithdraw = moneyWithdraw(accountNumber, accountOpeningBalance, accountType);
                     break;
 
+                case 4:
+                    double applyLoan = applyLoan(accountNumber, loanAmount, accountOpeningBalance, loanDescription);
+                    break;
+
 
                 default:
                     System.out.println("Invalid choice! Please enter a number from 1–8.");
@@ -140,6 +144,28 @@ public class BankSystem {
             }
         }
         System.out.println("Invalid account number!");
+        return 0;
+    }
+
+    public static double applyLoan(int[] accountNumber, double[] loanAmount, double[] accountOpeningBalance, String[] loanDescription) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter the account number: ");
+        int accountNumber3 = scan.nextInt();
+
+        for (int i = 0; i < accountNumber.length; i++) {
+            if (accountNumber[i] == accountNumber3) {
+                System.out.print("Purpose of the loan: ");
+                loanDescription[i] = scan.next();
+
+                System.out.print("Loan amount needed: Rs. ");
+                loanAmount[i] = scan.nextDouble();
+
+                accountOpeningBalance[i] += loanAmount[i];
+                System.out.println("Loan approved! New balance: Rs. " + accountOpeningBalance[i]);
+                return loanAmount[i];
+            }
+        }
+        System.out.println("Account not found!");
         return 0;
     }
 }
