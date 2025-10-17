@@ -56,6 +56,10 @@ public class BankSystem {
                     double fundTransfer = fundTransfer(accountNumber, accountOpeningBalance);
                     break;
 
+                case 7:
+                    double checkBalance = checkBalance(accountNumber, accountOpeningBalance, accountType);
+                    break;
+
                 default:
                     System.out.println("Invalid choice! Please enter a number from 1–8.");
             }
@@ -231,5 +235,21 @@ public class BankSystem {
         System.out.println("Sender new balance: Rs. " + accountOpeningBalance[senderIndex]);
         System.out.println("Receiver new balance: Rs. " + accountOpeningBalance[receiverIndex]);
         return transferAmount;
+    }
+
+    public static double checkBalance(int[] accountNumber, double[] accountOpeningBalance, String[] accountType) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter your account number: ");
+        int accountNumber6 = scan.nextInt();
+
+        for (int i = 0; i < accountNumber.length; i++) {
+            if (accountNumber[i] == accountNumber6) {
+                System.out.println("Account Type: " + accountType[i]);
+                System.out.println("Balance: Rs. " + accountOpeningBalance[i]);
+                return accountOpeningBalance[i];
+            }
+        }
+        System.out.println("Invalid account number!");
+        return 0;
     }
 }
