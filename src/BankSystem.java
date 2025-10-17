@@ -15,6 +15,7 @@ public class BankSystem {
 
         clearConsole();
 
+        //options
         while (true) {
             System.out.println("===== WELCOME =====");
             System.out.println("1. Create Account");
@@ -28,6 +29,7 @@ public class BankSystem {
             System.out.print("Enter your choice (1–8): ");
             int choice = scan.nextInt();
 
+            //options select using the switch case
             switch (choice) {
                 case 1:
                     if (accountCount < 50) {
@@ -72,6 +74,7 @@ public class BankSystem {
         }
     }
 
+    //create account option
     public static void createAccount(String[] userName, int[] accountNumber, double[] accountOpeningBalance, String[] accountType, int accounCount) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter the Name of the User: ");
@@ -122,6 +125,7 @@ public class BankSystem {
         System.out.println("Account created successfully for " + userName[accounCount]);
     }
 
+    //money deposit option
     public static double moneyDeposit(int[] accountNumber, double[] accountOpeningBalance, String[] accountType) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter the account number: ");
@@ -140,6 +144,7 @@ public class BankSystem {
         return 0;
     }
 
+    //money withdraw option
     public static double moneyWithdraw(int[] accountNumber, double[] accountOpeningBalance, String[] accountType) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter the account number: ");
@@ -164,6 +169,7 @@ public class BankSystem {
         return 0;
     }
 
+    //apply loan option
     public static double applyLoan(int[] accountNumber, double[] loanAmount, double[] accountOpeningBalance, String[] loanDescription) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter the account number: ");
@@ -186,6 +192,7 @@ public class BankSystem {
         return 0;
     }
 
+    //loan detail option
     public static double loanDetails(int[] accountNumber, double[] loanAmount, String[] userName, String[] loanDescription) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter your account number: ");
@@ -204,6 +211,7 @@ public class BankSystem {
         return 0;
     }
 
+    //fund transfer option
     private static double fundTransfer(int[] accountNumber, double[] accountOpeningBalance) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter sender account number: ");
@@ -243,6 +251,7 @@ public class BankSystem {
         return transferAmount;
     }
 
+    //check balance option
     public static double checkBalance(int[] accountNumber, double[] accountOpeningBalance, String[] accountType) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter your account number: ");
@@ -259,6 +268,7 @@ public class BankSystem {
         return 0;
     }
 
+    //clear console
     public static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
