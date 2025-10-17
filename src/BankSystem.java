@@ -59,6 +59,10 @@ public class BankSystem {
                 case 7:
                     double checkBalance = checkBalance(accountNumber, accountOpeningBalance, accountType);
                     break;
+                    
+                case 8:
+                    System.out.println("Thank you for banking with us!");
+                    System.exit(0);
 
                 default:
                     System.out.println("Invalid choice! Please enter a number from 1–8.");
