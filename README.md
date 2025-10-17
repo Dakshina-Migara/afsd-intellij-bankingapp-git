@@ -1,0 +1,1 @@
+A simple and interactive Banking Application built using Java. This project simulates basic banking operations such as account creation, deposits, withdrawals, balance checking, and transaction history.
