@@ -40,6 +40,11 @@ public class BankSystem {
                     double moneydeposit = moneyDeposit(accountNumber, accountOpeningBalance, accountType);
                     break;
 
+                case 3:
+                    double moneyWithdraw = moneyWithdraw(accountNumber, accountOpeningBalance, accountType);
+                    break;
+
+
                 default:
                     System.out.println("Invalid choice! Please enter a number from 1–8.");
             }
@@ -107,6 +112,30 @@ public class BankSystem {
                 double depositAmount = scan.nextDouble();
                 accountOpeningBalance[i] += depositAmount;
                 System.out.println("Deposit successful! your " + accountType[i] + " Account New balance: Rs. " + accountOpeningBalance[i]);
+                return accountOpeningBalance[i];
+            }
+        }
+        System.out.println("Invalid account number!");
+        return 0;
+    }
+
+    public static double moneyWithdraw(int[] accountNumber, double[] accountOpeningBalance, String[] accountType) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter the account number: ");
+        int accountNumber2 = scan.nextInt();
+
+        for (int i = 0; i < accountNumber.length; i++) {
+            if (accountNumber[i] == accountNumber2) {
+                System.out.print("Enter the Withdraw amount: Rs. ");
+                double withdrawAmount = scan.nextDouble();
+
+                if (withdrawAmount > accountOpeningBalance[i]) {
+                    System.out.println("Insufficient balance!");
+                    return accountOpeningBalance[i];
+                }
+
+                accountOpeningBalance[i] -= withdrawAmount;
+                System.out.println("Withdrawal successful! your " + accountType[i] + " Account New balance: Rs. " + accountOpeningBalance[i]);
                 return accountOpeningBalance[i];
             }
         }
