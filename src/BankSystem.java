@@ -52,6 +52,9 @@ public class BankSystem {
                     double loanDetails = loanDetails(accountNumber, loanAmount, userName, loanDescription);
                     break;
 
+                case 6:
+                    double fundTransfer = fundTransfer(accountNumber, accountOpeningBalance);
+                    break;
 
                 default:
                     System.out.println("Invalid choice! Please enter a number from 1–8.");
@@ -189,5 +192,44 @@ public class BankSystem {
         }
         System.out.println("Account not found!");
         return 0;
+    }
+
+    private static double fundTransfer(int[] accountNumber, double[] accountOpeningBalance) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter sender account number: ");
+        int senderAccNumber = scan.nextInt();
+        System.out.print("Enter receiver account number: ");
+        int receiverAccNumber = scan.nextInt();
+
+        int senderIndex = -1, receiverIndex = -1;
+        for (int i = 0; i < accountNumber.length; i++) {
+            if (accountNumber[i] == senderAccNumber) senderIndex = i;
+            if (accountNumber[i] == receiverAccNumber) receiverIndex = i;
+        }
+
+        if (senderIndex == -1 || receiverIndex == -1) {
+            System.out.println("Invalid account number(s)!");
+            return 0;
+        }
+        if (senderIndex == receiverIndex) {
+            System.out.println("Cannot transfer to the same account!");
+            return 0;
+        }
+
+        System.out.print("Enter amount to transfer: Rs. ");
+        double transferAmount = scan.nextDouble();
+
+        if (transferAmount > accountOpeningBalance[senderIndex]) {
+            System.out.println("Insufficient funds!");
+            return 0;
+        }
+
+        accountOpeningBalance[senderIndex] -= transferAmount;
+        accountOpeningBalance[receiverIndex] += transferAmount;
+
+        System.out.println("Transfer successful!");
+        System.out.println("Sender new balance: Rs. " + accountOpeningBalance[senderIndex]);
+        System.out.println("Receiver new balance: Rs. " + accountOpeningBalance[receiverIndex]);
+        return transferAmount;
     }
 }
